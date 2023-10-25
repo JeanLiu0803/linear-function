@@ -63,7 +63,5 @@ def line_formula(x1, y1, x2, y2):
 
     return m, b
 
-
-
 if __name__ == "__main__":
     run()
