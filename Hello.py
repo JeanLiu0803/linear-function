@@ -24,6 +24,7 @@ def run():
     st.set_page_config(
         page_title="Linear function Maker",
         page_icon="👋",
+        initial_sidebar_state="collapsed",
     )
 
     st.write("# Welcome to linear function Maker! 👋")
