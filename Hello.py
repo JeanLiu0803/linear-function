@@ -13,6 +13,8 @@
 # limitations under the License.
 
 import streamlit as st
+import numpy as np
+from numpy.linalg import inv
 from streamlit.logger import get_logger
 
 LOGGER = get_logger(__name__)
@@ -20,31 +22,46 @@ LOGGER = get_logger(__name__)
 
 def run():
     st.set_page_config(
-        page_title="Hello",
+        page_title="Linear function Maker",
         page_icon="👋",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
+    st.write("# Welcome to linear function Maker! 👋")
 
-    st.sidebar.success("Select a demo above.")
+    point1 = st.text_input("Please input first point (format: x1, y1)")
+    point2 = st.text_input("Please input second point (format: x2, y2)")
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+    runbutton = st.button("Magic! 🪄")
+
+    if runbutton:
+      if point1 != "" and point2 != "":
+        [x1, y1] = point1.split(",")
+        [x2, y2] = point2.split(",")
+        # print(x1, y1)
+        # print(x2, y2)
+
+        m, b = line_formula(float(x1), float(y1), float(x2), float(y2))
+
+        st.write("## Your function:")
+        st.write("y = {}x + ({})".format(m, b))
+
+
+def line_formula(x1, y1, x2, y2):
+    x_array = np.array([[x1, 1],
+                        [x2, 1]])
+    y_array = np.array([[y1],
+                        [y2]])
+    
+    x_inv = inv(x_array)
+    ans = np.dot(x_inv, y_array)
+    
+    m = np.round(ans[0][0], 4)
+    b = np.round(ans[1][0], 4)
+
+    print('y = {}x + ({})'.format(m, b))
+
+    return m, b
+
 
 
 if __name__ == "__main__":
