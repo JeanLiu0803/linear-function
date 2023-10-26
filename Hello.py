@@ -36,15 +36,16 @@ def run():
 
     st.write("## Your function")
     if runbutton:
-      if point1 != "" and point2 != "":
-        [x1, y1] = point1.split(",")
-        [x2, y2] = point2.split(",")
+        if point1 != "" and point2 != "":
+            [x1, y1] = point1.split(",")
+            [x2, y2] = point2.split(",")
         # print(x1, y1)
         # print(x2, y2)
 
-        m, b = line_formula(float(x1), float(y1), float(x2), float(y2))
+            m, b = line_formula(float(x1), float(y1), float(x2), float(y2))
 
-        st.write("y = {}x + ({})".format(m, b))
+            st.write("y = {}x + ({})".format(m, b))
+    
 
 
 def line_formula(x1, y1, x2, y2):
