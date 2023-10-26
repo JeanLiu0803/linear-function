@@ -23,7 +23,7 @@ LOGGER = get_logger(__name__)
 def run():
     st.set_page_config(
         page_title="Linear function Maker",
-        page_icon="👋",
+        page_icon="🪄",
         initial_sidebar_state="collapsed",
     )
 
@@ -34,6 +34,7 @@ def run():
 
     runbutton = st.button("Magic! 🪄")
 
+    st.write("## Your function")
     if runbutton:
       if point1 != "" and point2 != "":
         [x1, y1] = point1.split(",")
@@ -43,7 +44,6 @@ def run():
 
         m, b = line_formula(float(x1), float(y1), float(x2), float(y2))
 
-        st.write("## Your function:")
         st.write("y = {}x + ({})".format(m, b))
 
 
